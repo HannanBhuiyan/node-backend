@@ -1,0 +1,1052 @@
+{
+	"info": {
+		"_postman_id": "877dbd24-cdb6-4fc3-852a-84d4b6d84352",
+		"name": "ShopLover_Customer_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26119659"
+	},
+	"item": [
+		{
+			"name": "Customer Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"console.log(data)\r",
+									"pm.environment.set(\"CustomerEmailConfirmToken\", data.data.confirmToken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\": \"jewel\",\r\n\"password\":\"e34rE#$R\",\r\n\"email\":\"m.jewelrana80@gmail.com\",\r\n\"phone\":\"01756877788\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/signup",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Confirmation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"confirmToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTY5OGVhNzUyYjNkODY2Y2Y4ZDlkZCIsImlhdCI6MTY3OTIwMjUzOCwiZXhwIjoxNjc5NjM0NTM4fQ.fNH1vz3na-XZq9q9W2RpLifPBG8cDammt3rbDql3AEA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/email-confirmation",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"email-confirmation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"console.log(data)\r",
+									"pm.environment.set(\"CustomerAccessToken\", data.data.tokens.accessToken);\r",
+									"pm.environment.set(\"CustomerRefreshToken\", data.data.tokens.refreshToken);\r",
+									"pm.environment.set(\"CurrentUser\", JSON.stringify(data.data));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"m.jewelrana80@gmail.com\",\r\n\"password\":\"e34rE#$R1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/login",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Google Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"console.log(data)\r",
+									"pm.environment.set(\"CustomerAccessToken\", data.data.tokens.accessToken);\r",
+									"pm.environment.set(\"CustomerRefreshToken\", data.data.tokens.refreshToken);\r",
+									"pm.environment.set(\"CurrentUser\", JSON.stringify(data.data));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idToken\":\"eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..im3wVJqC4wk2i4n7.CNp3oreyRVqY-GSaD-KUbNYPKUSEEMZm0h8gJWtyofICplRy2ghhQk6Pc7SsB4EyDDplkPb1_M0ao5TFmvoaEhXmHJ-4aNcgqCy89AmDuiqfF4IrjLx7ryLXvXgzKza52v-k6uyPfOeuAfycpxR70nXse96_CKID2wiOibd8ZW8IkymtHklKN_7F74k9uNLj1Yxte2wvpRBx5xPDEL-cY3A44wy1YTT8l7AnP9ph270M6ztinMwueuC8bKzdzUXVoNtcHTlunVGPrHSC7y1Rq3j8FUU02qtBfWsH4BVcSegz0hNdRTX_DMtCzMtnAmHgoYxPT-G_LcyyMXU6rA2_MxdmstMlXHD7zC4.WAofRTD1pEZ_UWRrmQrcHg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/google/login",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"google",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"console.log(data.data.resetToken)\r",
+									"pm.environment.set(\"CustomerResetToken\", data.data.resetToken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"m.jewelrana80@gmail.com\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/resetPassword",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tokenVerify\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjI1ODk0NGQwNWQzZWFjY2FlNzAzZSIsInVzZXJJZCI6IjY0MjI1ODk0NGQwNWQzZWFjY2FlNzAzZSIsImlhdCI6MTY4MDA4NTY2MCwiZXhwIjoxNjgwMTcyMDYwfQ.SCoaN2fFiqUk9ptz9d5hljZsZ7WS_bARyAkL74h0XZ0\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/passwordToken/tokenVerify",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"passwordToken",
+								"tokenVerify"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset New Password Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"resetToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjI1ODk0NGQwNWQzZWFjY2FlNzAzZSIsInVzZXJJZCI6IjY0MjI1ODk0NGQwNWQzZWFjY2FlNzAzZSIsImlhdCI6MTY4MDA4NTY2MCwiZXhwIjoxNjgwMTcyMDYwfQ.SCoaN2fFiqUk9ptz9d5hljZsZ7WS_bARyAkL74h0XZ0\",\r\n\"password\":\"e34rE#$R\",\r\n\"confirmPassword\":\"e34rE#$R\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/resetPassword/new",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"resetPassword",
+								"new"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ2Yzg5MTIzMzlkMGMwZjkzNTFiOCIsImlhdCI6MTY3ODAxNDMyNywiZXhwIjoxNjc4MTAwNzI3fQ.CYxtdAy-gXXBfz40CukV15cAdCRD8zO4GA7CypQiP4U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prevPassword\":\"e34rE#$R\",\r\n    \"password\":\"e34rE#$R1\",\r\n    \"confirmPassword\":\"e34rE#$R1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/changePassword",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTY5OGVhNzUyYjNkODY2Y2Y4ZDlkZCIsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNjc5MjA1NjEyLCJleHAiOjE2NzkyOTIwMTJ9.25V_3TNt1CE_MFrHw841z4w4HIvZXeW18Fw-C35FmdE\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/refresh-token",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log Out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"{{CustomerResetToken}}\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/logout",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer Profile",
+			"item": [
+				{
+					"name": "Customer Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/profile",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": "/C:/Users/mdjewelrana/Desktop/ecom-db-design.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/update-profile-image",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"update-profile-image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer General Info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\": \"MD. JEWEL\",\r\n\"lastName\":\"RANA\",\r\n\"phone\":\"0175684441\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/general/info",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"general",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer Addess (Multipule)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\":\"Office\", \r\n  \"country\":\"Bangladesh\", \r\n  \"division\": \"Dhaka\", \r\n  \"district\":\"Dhaka\", \r\n  \"subDistrict\":\"Dhanmondhi\", \r\n  \"area\": \"Badda\", \r\n  \"address\": \"#12, #h-10, #10, Dhanmondhi, Dhaka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/address/add",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"address",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Customer Addess",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\":\"hhhhhhhhhhhhhhhh\", \r\n  \"country\":\"Bangladesh\", \r\n  \"division\": \"Dhaka\", \r\n  \"district\":\"Dhaka\", \r\n  \"subDistrict\":\"Uttara\", \r\n  \"area\": \"Uttara\", \r\n  \"address\": \"#12, #h-10, #10, Uttara, Dhaka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/address/edit/:address_Id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"address",
+								"edit",
+								":address_Id"
+							],
+							"variable": [
+								{
+									"key": "address_Id",
+									"value": "6423cbd7c1c0905d97904b56"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set-Default Customer Addess",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"isDefault\": true\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/address/default-set/:address_Id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"address",
+								"default-set",
+								":address_Id"
+							],
+							"variable": [
+								{
+									"key": "address_Id",
+									"value": "6423cbd7c1c0905d97904b56"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer Addess By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/customer/address/delete/:address_Id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"customer",
+								"address",
+								"delete",
+								":address_Id"
+							],
+							"variable": [
+								{
+									"key": "address_Id",
+									"value": "6423cbd7c1c0905d97904b56"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create New Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalItemsPrice\": 2000,\r\n    \"totalDiscountPrice\": 0,\r\n    \"totalShippingPrice\": 200,\r\n    \"totalOrderPrice\": 2200,\r\n    \"userInfo\": {\r\n        \"firstName\": \"Office\",\r\n        \"lastName\": \"Bangladesh\",\r\n        \"email\": \"Dhaka\",\r\n        \"phone\": \"01155555\"\r\n    },\r\n    \"shippingInfo\": {\r\n        \"phoneNo\": \"0129929983\",\r\n        \"type\": \"Home\",\r\n        \"country\": \"Bangladesh\",\r\n        \"division\": \"Dhaka\",\r\n        \"district\": \"Dhaka\",\r\n        \"subDistrict\": \"Baridhara\",\r\n        \"area\": \"Baridhara\",\r\n        \"address\": \"#12, #h-10, #10, Baridhara, Dhaka\"\r\n    },\r\n    \"orderItems\": [{\r\n        \"productName\": \"Product 1\",\r\n        \"image\": \"https://static-01.daraz.com.bd/p/e12eb1dba8d04693f4563f65fb1c7903.jpg\",\r\n        \"price\": 1500,\r\n        \"tax\": 0,\r\n        \"quantity\": 1,\r\n        \"stockId\": 10,\r\n        \"stock_id\": \"61b1b59f22399dabafd26695\",\r\n        \"productId\": 12,\r\n        \"product_id\": \"61b1b59f22399dabafd26695\"\r\n    }, {\r\n        \"productName\": \"Product 2\",\r\n        \"image\": \"https://static-01.daraz.com.bd/p/e12eb1dba8d04693f4563f65fb1c7903.jpg\",\r\n        \"price\": 1500,\r\n        \"tax\": 0,\r\n        \"quantity\": 1,\r\n        \"stockId\": 10,\r\n        \"stock_id\": \"61b1b59f22399dabafd26695\",\r\n        \"productId\": 12,\r\n        \"product_id\": \"61b1b59f22399dabafd26695\"\r\n    }],\r\n    \"paymentStatus\": \"unpaid\",\r\n    \"paymentMode\": \"CashOnDelivery\",\r\n    \"currency\": \"BDT\",\r\n    \"orderStatus\": \"Pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/order/create",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/order/me",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"order",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Orders Cancel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/order/cancel/:order_id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"order",
+								"cancel",
+								":order_id"
+							],
+							"variable": [
+								{
+									"key": "order_id",
+									"value": "6416b53b666913c39d16f3e5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Create New Wishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"wishlistItems\": {\r\n        \"productName\": \"Product 1\",\r\n        \"image\": \"https://static-01.daraz.com.bd/p/e12eb1dba8d04693f4563f65fb1c7903.jpg\",\r\n        \"price\": 5555,\r\n        \"tax\": 0,\r\n        \"quantity\": 1,\r\n        \"stockId\": 10,\r\n        \"stock_id\": \"61b1b59f22399dabafd26695\",\r\n        \"productId\": 12,\r\n        \"product_id\": \"61b1b59f22399dabafd26695\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/wishlist/create",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"wishlist",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Wishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/wishlist/favorite/list",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"wishlist",
+								"favorite",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Customer Wishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user=JSON.parse(pm.environment.get(\"CurrentUser\"));\r",
+									"console.log(user)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/wishlist/favorite/:wishlist_id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"wishlist",
+								"favorite",
+								":wishlist_id"
+							],
+							"variable": [
+								{
+									"key": "wishlist_id",
+									"value": "6422616c0f0bcb210809858a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Refund",
+			"item": [
+				{
+					"name": "Create refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productDetails\": {\n      \"stock_id\": \"64180cad9290f7598db01e9d\",\n      \"stockId\": 1,\n      \"name\": \"Half new shirt 111\",\n      \"quantity\": 2,\n      \"price\": 20000,\n      \"image\": \"http:\\\\192.168.145.173:8070\\\\stock\\\\stock_image\\\\stock_50403bfe-d43d-4046-b4c0-2545aba34b0e.webp\"\n    },\n    \"order_id\": \"64180cad9290f1598db01e9d\",\n    \"orderId\": 3,\n    \"orderCode\": \"SL0000003\",\n    \"reason\": \"Broken\",\n    \"optional_reason\": \"I want to change\",\n    \"payment_method\": \"bkash\",\n    \"account_credential\": \"01743427927\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/refund/new",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"refund",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update refund",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productDetails\": {\n      \"stock_id\": \"64180cad9290f7598db01e9d\",\n      \"stockId\": 1,\n      \"name\": \"Full new shirt 2\",\n      \"quantity\": 2,\n      \"price\": 20000,\n      \"image\": \"http:\\\\192.168.145.173:8070\\\\stock\\\\stock_image\\\\stock_50403bfe-d43d-4046-b4c0-2545aba34b0e.webp\"\n    },\n    \"order_id\": \"64180cad9290f1598db01e9d\",\n    \"orderId\": 3,\n    \"orderCode\": \"SL0000003\",\n    \"reason\": \"Broken again\",\n    \"optional_reason\": \"I want to change\",\n    \"payment_method\": \"bkash\",\n    \"account_credential\": \"01743427927\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/refund/edit/:id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"refund",
+								"edit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64184033b54d97c985396e7a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update refund status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"statusId\":4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/refund/changeStatus/:id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"refund",
+								"changeStatus",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64184033b54d97c985396e7a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get refund",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"statusId\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/refund",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"refund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Refund By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Shoplover_Customer_Host}}/refund/view/:id",
+							"host": [
+								"{{Shoplover_Customer_Host}}"
+							],
+							"path": [
+								"refund",
+								"view",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64184033b54d97c985396e7a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{CustomerAccessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
